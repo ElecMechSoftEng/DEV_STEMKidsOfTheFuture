@@ -24,6 +24,7 @@
     <Compile Include="BlinkyMusicIllumination.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Sequence.txt" />
     <Content Include="setup.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
