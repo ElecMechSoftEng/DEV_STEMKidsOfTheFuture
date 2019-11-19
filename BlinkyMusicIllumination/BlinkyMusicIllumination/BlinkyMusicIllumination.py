@@ -304,8 +304,8 @@ GPIO.setmode(GPIO.BOARD)
 for i in range(1,9):
   GPIO.setup(pin_map[i], GPIO.OUT)
 time.sleep(2.0);
-#dev    = "/dev/spidev0.0"
-#spidev = file(dev,"wb")
+dev    = "/dev/spidev0.0"
+spidev = file(dev,"wb")
 ##############################
 
 
