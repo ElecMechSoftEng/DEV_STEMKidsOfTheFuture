@@ -294,13 +294,20 @@ def star_inside_solid(R,G,B):
 #####################################################################
 
 
+
+
+
+# I don't know why we are "spidev" -> SPI COMMs I want to remove this and just go off of GPIO control with transistors
+##########################
 # Setup the board
 GPIO.setmode(GPIO.BOARD)
 for i in range(1,9):
   GPIO.setup(pin_map[i], GPIO.OUT)
 time.sleep(2.0);
-dev    = "/dev/spidev0.0"
-spidev = file(dev,"wb")
+#dev    = "/dev/spidev0.0"
+#spidev = file(dev,"wb")
+##############################
+
 
 
 # Calculate gamma correction
@@ -308,13 +315,15 @@ gamma = bytearray(256)
 for i in range(256):
   gamma[i] = int(pow(float(i) / 255.0, 2.5) * 255.0 + 0.5)
 
-starinit(1)
+starinit(1) # Sets up star once. 
 
+
+########################################################
 # Open the setup config file and parse it to determine 
 # how GPIO1-8 are mapped to logical 1-8
-with open("setup.txt",'r') as f:
+with open("setup.txt",'r') as f: #How do I aim so that is works with GIT?
   data = f.readlines()
-  for i in range(8):
+  for i in range(8): # there are 8 lights to be read 1-8 spaced by return character 1->8, 2->6, 3->3, 4->5, 5->1, 6->7, 7->4, 8->2
     logical_map[i+1] = int(data[i])
 
 # Open the input sequnce file and read/parse it
