@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
 # Command Line usage:
-#   xmas.py <input sequence> <audio file>
+#   BlinkyMusicIllumination.py <input sequence.txt> <audio file.mp3>
 
 import RPi.GPIO as GPIO, time
 import sys
@@ -327,6 +327,7 @@ with open("setup.txt",'r') as f: #How do I aim so that is works with GIT?
     logical_map[i+1] = int(data[i])
 
 # Open the input sequnce file and read/parse it
+# Test Change
 with open(sys.argv[1],'r') as f:
   seq_data = f.readlines()
   for i in range(len(seq_data)):
