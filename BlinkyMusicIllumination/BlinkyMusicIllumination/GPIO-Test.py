@@ -10,6 +10,7 @@ except RuntimeError:
 import sys
 import getopt
 import curses
+import random
 import time
 from datetime import datetime
 
