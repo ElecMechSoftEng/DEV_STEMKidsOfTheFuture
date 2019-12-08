@@ -31,8 +31,106 @@ blink_B2      = int(0)
 logical_map = [0 for i in range(9)]
 
 # Defines the mapping of the GPIO1-8 to the pin on the Pi
-#pin_map = [0,11,12,8,15,16,18,22,7]
-pin_map = [14,4,17,27,22,10,9,11,5]
+#gpio_ch = [0,11,12,8,15,16,18,22,7]
+#pin_map = [14,4,17,27,22,10,9,11,5]
+def getRaspiModel(argument):
+    #Detect Raspberry Pi model
+    switcher = {
+        "0002": "Model B Revision 1.0 256Mb",
+        "0003": "Model B Revision 1.0 + ECN0001 256Mb",
+        "0004": "Model B Revision 2.0 256Mb",
+        "0005": "Model B Revision 2.0 256Mb",
+        "0006": "Model B Revision 2.0 256Mb",
+        "0007": "Model A 256Mb",
+        "0008": "Model A 256Mb",
+        "0009": "Model A 256Mb",
+        "000d": "Model B Revision 2.0 512Mb",
+        "000e": "Model B Revision 2.0 512Mb",
+        "000f": "Model B Revision 2.0 512Mb",
+        "0010": "Model B+ 512Mb",
+        "0012": "Model A+ 256Mb",
+        "0013": "Model B+ 512Mb",
+        "13": "Model B+ 512Mb",  # https://github.com/kgbplus/gpiotest/issues/7
+        "0015": "Model A+ 256/512Mb",
+        "a01040": "2 Model B Revision 1.0 1Gb",
+        "a01041": "2 Model B Revision 1.1 1Gb",
+        "a21041": "2 Model B Revision 1.1 1Gb",
+        "a22042": "2 Model B (with BCM2837) 1Gb",
+        "900021": "Model A+ 512Mb",
+        "900032": "Model B+ 512Mb",
+        "900092": "Zero Revision 1.2 512Mb",
+        "900093": "Zero Revision 1.3 512Mb",
+        "920093": "Zero Revision 1.3 512Mb",
+        "9000c1": "Zero W Revision 1.1 512Mb",
+        "a02082": "3 Model B 1Gb",
+        "a22082": "3 Model B 1Gb",
+        "a32082": "3 Model B 1Gb",
+        "a020d3": "3 Model B+ 1Gb",
+        "9020e0": "3 Model A+ 512Mb",
+        "a03111": "4 Model B 1Gb",
+        "b03111": "4 Model B 2Gb",
+        "c03111": "4 Model B 4Gb"
+
+    }
+    return switcher.get(argument, "not supported")
+
+def getGpioNum(argument):
+    #Return number of GPIO lines
+    switcher = {
+        "0002": 17,
+        "0003": 17,
+        "0004": 17,
+        "0005": 17,
+        "0006": 17,
+        "0007": 17,
+        "0008": 17,
+        "0009": 17,
+        "000d": 17,
+        "000e": 17,
+        "000f": 17,
+        "0010": 26,
+        "0012": 26,
+        "0013": 26,
+        "13": 26,
+        "0015": 26,
+        "a01040": 26,
+        "a01041": 26,
+        "a21041": 26,
+        "a22042": 26,
+        "900021": 26,
+        "900032": 26,
+        "900092": 26,
+        "900093": 26,
+        "920093": 26,
+        "9000c1": 26,
+        "a02082": 26,
+        "a22082": 26,
+        "a32082": 26,
+        "a020d3": 26,
+        "9020e0": 26,
+        "a03111": 26,
+        "b03111": 26,
+        "c03111": 26
+    }
+    return switcher.get(argument, 17)
+
+
+try: 
+    RaspiModel = getRaspiModel(GPIO.RPI_INFO['REVISION'])
+    if (RaspiModel == "not supported"):
+        raise NameError('hardware not supported')
+
+    #Detect GPIO parameters
+    #gpio_ch - array of GPIO lines numbers
+    if gpio_num == 0:
+        gpio_num = getGpioNum(GPIO.RPI_INFO['REVISION'])
+
+    if (gpio_num == 17):
+        gpio_ch = [0,1,4,7,8,9,10,11,14,15,17,18,21,22,23,24,25]
+    else:
+        gpio_ch = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]
+except Exception as e:
+    print(e)
 
 # Defines an arbitrary X,Y position for each LED in the star
 # which is used for some star effects
@@ -303,7 +401,7 @@ def star_inside_solid(R,G,B):
 # Setup the board
 GPIO.setmode(GPIO.BOARD)
 for i in range(1,9):
-  GPIO.setup(pin_map[i], GPIO.OUT)
+  GPIO.setup(gpio_ch[i], GPIO.OUT)
 time.sleep(2.0);
 dev    = "/dev/spidev0.0"
 spidev = file(dev,"wb")
@@ -359,9 +457,9 @@ while True :
 
       # change the pin state
       if next_step[2] == "1":
-        GPIO.output(pin_map[logical_map[int(next_step[1])]],True)
+        GPIO.output(gpio_ch[logical_map[int(next_step[1])]],True)
       else:
-        GPIO.output(pin_map[logical_map[int(next_step[1])]],False)
+        GPIO.output(gpio_ch[logical_map[int(next_step[1])]],False)
 
     # Check for star commands 
     if next_step[1].rstrip() == "BLINK":
@@ -402,7 +500,7 @@ while True :
     # if the END command
     if next_step[1].rstrip() == "END":
       for i in range(1,9):
-        GPIO.output(pin_map[logical_map[i]],False)
+        GPIO.output(gpio_ch[logical_map[i]],False)
       break
     step += 1
 
@@ -446,3 +544,28 @@ while True :
     spidev.write(set)
     spidev.flush()
   # ------END-BLINKS---------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
