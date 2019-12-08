@@ -31,7 +31,8 @@ blink_B2      = int(0)
 logical_map = [0 for i in range(9)]
 
 # Defines the mapping of the GPIO1-8 to the pin on the Pi
-pin_map = [0,11,12,8,15,16,18,22,7]
+#pin_map = [0,11,12,8,15,16,18,22,7]
+pin_map = [14,4,17,27,22,10,9,11,5]
 
 # Defines an arbitrary X,Y position for each LED in the star
 # which is used for some star effects
