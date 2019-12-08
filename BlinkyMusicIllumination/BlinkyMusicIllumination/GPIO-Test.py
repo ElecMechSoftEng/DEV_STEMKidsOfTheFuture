@@ -13,7 +13,7 @@ import curses
 import time
 from datetime import datetime
 
-def termON():
+def termOn():
     # Enable character buffering and echo
     curses.nocbreak()
     curses.echo()
