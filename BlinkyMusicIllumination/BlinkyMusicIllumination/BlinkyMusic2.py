@@ -98,7 +98,7 @@ gamma = bytearray(256)
 for i in range(256):
   gamma[i] = int(pow(float(i) / 255.0, 2.5) * 255.0 + 0.5)
 
-starinit(1)
+
 
 # Open the setup config file and parse it to determine 
 # how GPIO1-8 are mapped to logical 1-8
