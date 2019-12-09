@@ -28,6 +28,7 @@
     <Compile Include="GPIO-Test.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="xmas.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Sequence.txt" />
