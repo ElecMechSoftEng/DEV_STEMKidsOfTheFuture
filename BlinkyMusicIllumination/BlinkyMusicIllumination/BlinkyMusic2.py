@@ -31,269 +31,56 @@ blink_B2      = int(0)
 logical_map = [0 for i in range(9)]
 
 # Defines the mapping of the GPIO1-8 to the pin on the Pi
-# pin_map = [0,11,12,8,15,16,18,22,7]
+pin_map = [0,11,12,8,15,16,18,22,7]
 #         [0,1,2,3,4,05,06,07,08,9,10,11,12,13,14,15,16,17,18,19,20] 
-pin_map = [0,0,3,5,7,29,31,26,24]
+# pin_map = [0,0,3,5,7,29,31,26,24]
 
 
-# Defines an arbitrary X,Y position for each LED in the star
-# which is used for some star effects
-star = [-190, 262,
-         -90, 500,
-          45, 724,
-         123, 464,
-         217, 272,
-         442, 230,
-         676, 210,
-         509,  59,
-         340,-122,
-         355,-332,
-         409,-562,
-         209,-432,
-           6,-337,
-        -204,-459,
-        -378,-539,
-        -360,-349,
-        -336,-116,
-        -496,  70,
-        -701, 227,
-        -454, 241,
-        -184,  60,
-        -119,-143,
-         107,-160,
-         201,  60,
-           5, 194]	 
+def getRaspiModel(argument):
+    #Detect Raspberry Pi model
+    switcher = {
+        "0002": "Model B Revision 1.0 256Mb",
+        "0003": "Model B Revision 1.0 + ECN0001 256Mb",
+        "0004": "Model B Revision 2.0 256Mb",
+        "0005": "Model B Revision 2.0 256Mb",
+        "0006": "Model B Revision 2.0 256Mb",
+        "0007": "Model A 256Mb",
+        "0008": "Model A 256Mb",
+        "0009": "Model A 256Mb",
+        "000d": "Model B Revision 2.0 512Mb",
+        "000e": "Model B Revision 2.0 512Mb",
+        "000f": "Model B Revision 2.0 512Mb",
+        "0010": "Model B+ 512Mb",
+        "0012": "Model A+ 256Mb",
+        "0013": "Model B+ 512Mb",
+        "13": "Model B+ 512Mb",  # https://github.com/kgbplus/gpiotest/issues/7
+        "0015": "Model A+ 256/512Mb",
+        "a01040": "2 Model B Revision 1.0 1Gb",
+        "a01041": "2 Model B Revision 1.1 1Gb",
+        "a21041": "2 Model B Revision 1.1 1Gb",
+        "a22042": "2 Model B (with BCM2837) 1Gb",
+        "900021": "Model A+ 512Mb",
+        "900032": "Model B+ 512Mb",
+        "900092": "Zero Revision 1.2 512Mb",
+        "900093": "Zero Revision 1.3 512Mb",
+        "920093": "Zero Revision 1.3 512Mb",
+        "9000c1": "Zero W Revision 1.1 512Mb",
+        "a02082": "3 Model B 1Gb",
+        "a22082": "3 Model B 1Gb",
+        "a32082": "3 Model B 1Gb",
+        "a020d3": "3 Model B+ 1Gb",
+        "9020e0": "3 Model A+ 512Mb",
+        "a03111": "4 Model B 1Gb",
+        "b03111": "4 Model B 2Gb",
+        "c03111": "4 Model B 4Gb"
 
-#####################################################################
-def starinit(n):
-   for x in range(25):
-     set[x*3  ] = gamma[0]
-     set[x*3+1] = gamma[0]
-     set[x*3+2] = gamma[0]
-   spidev.write(set)
-   spidev.flush()
-   time.sleep(0.05)
+    }
+    return switcher.get(argument, "not supported")
 
-#####################################################################
-def star_vert(per,R1,G1,B1,R2,G2,B2):
 
-   for x in range(25):
-     if (float(star[x*2]) +701.0)/1377.0 > float(per)/100.0:
-       set[x*3  ] = gamma[int(R1)]
-       set[x*3+1] = gamma[int(G1)]
-       set[x*3+2] = gamma[int(B1)]
-     else:
-       set[x*3  ] = gamma[int(R2)]
-       set[x*3+1] = gamma[int(G2)]
-       set[x*3+2] = gamma[int(B2)]
+print getRaspiModel(GPIO.RPI_INFO['REVISION'])
 
-   spidev.write(set)
-   spidev.flush()
 
-#####################################################################
-def star_solid(R,G,B):
-
-   for x in range(25):
-       set[x*3  ] = gamma[int(R)]
-       set[x*3+1] = gamma[int(G)]
-       set[x*3+2] = gamma[int(B)]
-   
-   spidev.write(set)
-   spidev.flush()
-
-#####################################################################
-def star_tips(Rt,Gt,Bt,R,G,B):
-
-   for x in range(25):
-       set[x*3  ] = gamma[int(R)]
-       set[x*3+1] = gamma[int(G)]
-       set[x*3+2] = gamma[int(B)]
-   
-   set[2*3  ] = gamma[int(Rt)]
-   set[2*3+1] = gamma[int(Gt)]
-   set[2*3+2] = gamma[int(Bt)]
-
-   set[6*3  ] = gamma[int(Rt)]
-   set[6*3+1] = gamma[int(Gt)]
-   set[6*3+2] = gamma[int(Bt)]
-
-   set[10*3  ] = gamma[int(Rt)]
-   set[10*3+1] = gamma[int(Gt)]
-   set[10*3+2] = gamma[int(Bt)]
-
-   set[14*3  ] = gamma[int(Rt)]
-   set[14*3+1] = gamma[int(Gt)]
-   set[14*3+2] = gamma[int(Bt)]
-
-   set[18*3  ] = gamma[int(Rt)]
-   set[18*3+1] = gamma[int(Gt)]
-   set[18*3+2] = gamma[int(Bt)]
-
-   spidev.write(set)
-   spidev.flush()
-
-#####################################################################
-def star_point1(R,G,B):
-
-   set[0*3  ] = gamma[int(R)]
-   set[0*3+1] = gamma[int(G)]
-   set[0*3+2] = gamma[int(B)]
-
-   set[1*3  ] = gamma[int(R)]
-   set[1*3+1] = gamma[int(G)]
-   set[1*3+2] = gamma[int(B)]
-
-   set[2*3  ] = gamma[int(R)]
-   set[2*3+1] = gamma[int(G)]
-   set[2*3+2] = gamma[int(B)]
-
-   set[3*3  ] = gamma[int(R)]
-   set[3*3+1] = gamma[int(G)]
-   set[3*3+2] = gamma[int(B)]
-
-   set[4*3  ] = gamma[int(R)]
-   set[4*3+1] = gamma[int(G)]
-   set[4*3+2] = gamma[int(B)]
-
-   set[24*3  ] = gamma[int(R)]
-   set[24*3+1] = gamma[int(G)]
-   set[24*3+2] = gamma[int(B)]
-   
-   spidev.write(set)
-   spidev.flush()
-
-#####################################################################
-def star_point2(R,G,B):
-
-   set[4*3  ] = gamma[int(R)]
-   set[4*3+1] = gamma[int(G)]
-   set[4*3+2] = gamma[int(B)]
-
-   set[5*3  ] = gamma[int(R)]
-   set[5*3+1] = gamma[int(G)]
-   set[5*3+2] = gamma[int(B)]
-
-   set[6*3  ] = gamma[int(R)]
-   set[6*3+1] = gamma[int(G)]
-   set[6*3+2] = gamma[int(B)]
-
-   set[7*3  ] = gamma[int(R)]
-   set[7*3+1] = gamma[int(G)]
-   set[7*3+2] = gamma[int(B)]
-
-   set[8*3  ] = gamma[int(R)]
-   set[8*3+1] = gamma[int(G)]
-   set[8*3+2] = gamma[int(B)]
-
-   set[23*3  ] = gamma[int(R)]
-   set[23*3+1] = gamma[int(G)]
-   set[23*3+2] = gamma[int(B)]
-   
-   spidev.write(set)
-   spidev.flush()
-
-#####################################################################
-def star_point3(R,G,B):
-
-   set[8*3  ] = gamma[int(R)]
-   set[8*3+1] = gamma[int(G)]
-   set[8*3+2] = gamma[int(B)]
-
-   set[9*3  ] = gamma[int(R)]
-   set[9*3+1] = gamma[int(G)]
-   set[9*3+2] = gamma[int(B)]
-
-   set[10*3  ] = gamma[int(R)]
-   set[10*3+1] = gamma[int(G)]
-   set[10*3+2] = gamma[int(B)]
-
-   set[11*3  ] = gamma[int(R)]
-   set[11*3+1] = gamma[int(G)]
-   set[11*3+2] = gamma[int(B)]
-
-   set[12*3  ] = gamma[int(R)]
-   set[12*3+1] = gamma[int(G)]
-   set[12*3+2] = gamma[int(B)]
-
-   set[22*3  ] = gamma[int(R)]
-   set[22*3+1] = gamma[int(G)]
-   set[22*3+2] = gamma[int(B)]
-   
-   spidev.write(set)
-   spidev.flush()
-
-#####################################################################
-def star_point4(R,G,B):
-
-   set[12*3  ] = gamma[int(R)]
-   set[12*3+1] = gamma[int(G)]
-   set[12*3+2] = gamma[int(B)]
-
-   set[13*3  ] = gamma[int(R)]
-   set[13*3+1] = gamma[int(G)]
-   set[13*3+2] = gamma[int(B)]
-
-   set[14*3  ] = gamma[int(R)]
-   set[14*3+1] = gamma[int(G)]
-   set[14*3+2] = gamma[int(B)]
-
-   set[15*3  ] = gamma[int(R)]
-   set[15*3+1] = gamma[int(G)]
-   set[15*3+2] = gamma[int(B)]
-
-   set[16*3  ] = gamma[int(R)]
-   set[16*3+1] = gamma[int(G)]
-   set[16*3+2] = gamma[int(B)]
-
-   set[21*3  ] = gamma[int(R)]
-   set[21*3+1] = gamma[int(G)]
-   set[21*3+2] = gamma[int(B)]
-   
-   spidev.write(set)
-   spidev.flush()
-
-#####################################################################
-def star_point5(R,G,B):
-
-   set[0*3  ] = gamma[int(R)]
-   set[0*3+1] = gamma[int(G)]
-   set[0*3+2] = gamma[int(B)]
-
-   set[19*3  ] = gamma[int(R)]
-   set[19*3+1] = gamma[int(G)]
-   set[19*3+2] = gamma[int(B)]
-
-   set[18*3  ] = gamma[int(R)]
-   set[18*3+1] = gamma[int(G)]
-   set[18*3+2] = gamma[int(B)]
-
-   set[17*3  ] = gamma[int(R)]
-   set[17*3+1] = gamma[int(G)]
-   set[17*3+2] = gamma[int(B)]
-
-   set[16*3  ] = gamma[int(R)]
-   set[16*3+1] = gamma[int(G)]
-   set[16*3+2] = gamma[int(B)]
-
-   set[20*3  ] = gamma[int(R)]
-   set[20*3+1] = gamma[int(G)]
-   set[20*3+2] = gamma[int(B)]
-   
-   spidev.write(set)
-   spidev.flush()
-
-#####################################################################
-def star_inside_solid(R,G,B):
-
-   for x in range(5):
-       set[(x+20)*3  ] = gamma[int(R)]
-       set[(x+20)*3+1] = gamma[int(G)]
-       set[(x+20)*3+2] = gamma[int(B)]
-   
-   spidev.write(set)
-   spidev.flush()
-
-#####################################################################
 #####################################################################
 
 
