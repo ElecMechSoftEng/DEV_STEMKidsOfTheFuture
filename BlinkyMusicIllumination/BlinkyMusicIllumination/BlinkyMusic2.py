@@ -36,49 +36,10 @@ pin_map = [0,11,12,8,15,16,18,22,7]
 # pin_map = [0,0,3,5,7,29,31,26,24]
 
 
-def getRaspiModel(argument):
-    #Detect Raspberry Pi model
-    switcher = {
-        "0002": "Model B Revision 1.0 256Mb",
-        "0003": "Model B Revision 1.0 + ECN0001 256Mb",
-        "0004": "Model B Revision 2.0 256Mb",
-        "0005": "Model B Revision 2.0 256Mb",
-        "0006": "Model B Revision 2.0 256Mb",
-        "0007": "Model A 256Mb",
-        "0008": "Model A 256Mb",
-        "0009": "Model A 256Mb",
-        "000d": "Model B Revision 2.0 512Mb",
-        "000e": "Model B Revision 2.0 512Mb",
-        "000f": "Model B Revision 2.0 512Mb",
-        "0010": "Model B+ 512Mb",
-        "0012": "Model A+ 256Mb",
-        "0013": "Model B+ 512Mb",
-        "13": "Model B+ 512Mb",  # https://github.com/kgbplus/gpiotest/issues/7
-        "0015": "Model A+ 256/512Mb",
-        "a01040": "2 Model B Revision 1.0 1Gb",
-        "a01041": "2 Model B Revision 1.1 1Gb",
-        "a21041": "2 Model B Revision 1.1 1Gb",
-        "a22042": "2 Model B (with BCM2837) 1Gb",
-        "900021": "Model A+ 512Mb",
-        "900032": "Model B+ 512Mb",
-        "900092": "Zero Revision 1.2 512Mb",
-        "900093": "Zero Revision 1.3 512Mb",
-        "920093": "Zero Revision 1.3 512Mb",
-        "9000c1": "Zero W Revision 1.1 512Mb",
-        "a02082": "3 Model B 1Gb",
-        "a22082": "3 Model B 1Gb",
-        "a32082": "3 Model B 1Gb",
-        "a020d3": "3 Model B+ 1Gb",
-        "9020e0": "3 Model A+ 512Mb",
-        "a03111": "4 Model B 1Gb",
-        "b03111": "4 Model B 2Gb",
-        "c03111": "4 Model B 4Gb"
-
-    }
-    return switcher.get(argument, "not supported")
 
 
-print getRaspiModel(GPIO.RPI_INFO['REVISION'])
+
+# print getRaspiModel(GPIO.RPI_INFO['REVISION'])
 
 
 #####################################################################
