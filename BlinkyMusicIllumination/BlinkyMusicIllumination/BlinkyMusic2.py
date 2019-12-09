@@ -65,6 +65,7 @@ for i in range(256):
 # how GPIO1-8 are mapped to logical 1-8
 with open("setup.txt",'r') as f:
   data = f.readlines()
+  i=0
   for i in range(8):
     logical_map[i+1] = int(data[i])
 
