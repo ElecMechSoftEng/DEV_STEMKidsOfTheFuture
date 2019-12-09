@@ -21,6 +21,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BlinkyMusic2.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BlinkyMusicIllumination.py" />
     <Compile Include="GPIO-Test.py">
       <SubType>Code</SubType>
