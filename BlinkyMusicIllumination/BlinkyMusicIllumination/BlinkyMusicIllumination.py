@@ -348,7 +348,7 @@ def star_inside_solid(R,G,B):
 ##########################
 # Setup the board
 GPIO.setmode(GPIO.BOARD)
-for i in range(1,9):
+for i in range(1,23):
   GPIO.setup(pin_map[i], GPIO.OUT)
 time.sleep(2.0);
 dev    = "/dev/spidev0.0"
