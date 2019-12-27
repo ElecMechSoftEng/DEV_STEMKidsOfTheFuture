@@ -31,6 +31,7 @@ blink_B2      = int(0)
 logical_map = [0 for i in range(9)]
 
 # Defines the mapping of the GPIO1-8 to the pin on the Pi
+# GPIO     0,01,02,3,04,05,06,07,8          
 pin_map = [0,11,12,8,15,16,18,22,7]
 # print getRaspiModel(GPIO.RPI_INFO['REVISION'])
 

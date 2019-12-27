@@ -29,7 +29,9 @@ blink_B2      = int(0)
 # 7 = GREEN
 # 8 = BLUE
 logical_map = [0 for i in range(9)]
-pin_map = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]
+# Defines the mapping of the GPIO1-8 to the pin on the Pi
+#  GPIO    0,1,2,3,4,05,06,07,08  #,09,10,11,12,13,14
+pin_map = [0,0,3,5,7,29,31,26,24] #,21,19,23,32,33,0,16,17,18,19,20,21,22,23,24,25,26,27]
 
 
 # Defines the mapping of the GPIO1-8 to the pin on the Pi
