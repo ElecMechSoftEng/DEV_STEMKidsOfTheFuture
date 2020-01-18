@@ -38,6 +38,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Clip30sYoungGiant.mp3" />
+    <Content Include="OG Setup\test.mp3" />
+    <Content Include="OG Setup\test.txt" />
     <Content Include="SeqenceFix2020_01_18_0115.txt" />
     <Content Include="Sequence2020_01_18.txt" />
     <Content Include="Sequence_30sClipYoungGiant.txt" />
@@ -45,6 +47,9 @@
     <Content Include="Sequence.txt" />
     <Content Include="setup.txt" />
     <Content Include="Music.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="OG Setup\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
