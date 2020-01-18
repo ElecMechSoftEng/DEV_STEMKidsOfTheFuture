@@ -34,7 +34,12 @@ logical_map = [0 for i in range(9)]
 # GPIO     0,01,02,3,04,05,06,07,8          
 pin_map = [0,11,12,8,15,16,18,22,7]
 # print getRaspiModel(GPIO.RPI_INFO['REVISION'])
-
+#Sequence   PIN     GPIO
+#   3       8       14
+#   4       16      23
+#   5       11      17
+#   7       14      22
+#   8       12      18       
 
 #####################################################################
 
