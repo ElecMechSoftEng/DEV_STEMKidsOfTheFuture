@@ -21,10 +21,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Blinky-FAILED.py" />
+    <Compile Include="Blinky-Works.py" />
     <Compile Include="BlinkyMusic2.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BlinkyMusicIllumination.py" />
+    <Compile Include="BlinkyRampFunction.py" />
     <Compile Include="GPIO-Test.py">
       <SubType>Code</SubType>
     </Compile>
