@@ -31,7 +31,7 @@
     <Compile Include="xmas.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="30sClipYoungGiant.mp3" />
+    <Content Include="Clip30sYoungGiant.mp3" />
     <Content Include="Sequence_30sClipYoungGiant.txt" />
     <Content Include="Sequence_2019-12-26.txt" />
     <Content Include="Sequence.txt" />
