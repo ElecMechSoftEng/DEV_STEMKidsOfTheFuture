@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Clip30sYoungGiant.mp3" />
+    <Content Include="SeqenceFix2020_01_18_0115.txt" />
     <Content Include="Sequence2020_01_18.txt" />
     <Content Include="Sequence_30sClipYoungGiant.txt" />
     <Content Include="Sequence_2019-12-26.txt" />
