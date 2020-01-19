@@ -36,6 +36,9 @@ ball.shape("square")  # sets OG dimensions  of 1x1
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)  # Initial position
+ball.dx = 0.1     # ball delta move or change
+ball.dy = -0.1     # Moves by 2
+
 
 # Function
 def paddle_a_up():
@@ -69,3 +72,25 @@ wn.onkeypress(paddle_b_down, "Down")
 # Main Game Loop
 while True:
     wn.update()
+
+    # Move the ball
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+
+    # Border Checking
+    if ball.ycor() > 290:   # Top Border
+        ball.sety(290)
+        ball.dy *= -1
+
+    if ball.ycor() < -290:  # Bottom Border
+        ball.sety(-290)
+        ball.dy *= -1
+
+    if ball.xcor() > 390:   # Right Border
+        ball.goto(0, 0)
+        ball.dx *= -1
+
+    if ball.xcor() < -390:  # Left Border
+        ball.goto(0, 0)
+        ball.dx *= -1
+
