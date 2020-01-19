@@ -1,5 +1,4 @@
 # Python Pong Game
-
 import turtle
 
 # Windows
@@ -12,7 +11,7 @@ wn.tracer(0)                        # Helps with refresh rate of window
 # Paddle A
 paddle_a = turtle.Turtle()
 paddle_a.speed(0)  # Max Speed of Animation
-paddle_a.shape("square")  # sets OG dimensions  of 1x1
+paddle_a.shape("square")  # sets OG dimensions  of wide100 x tall100
 paddle_a.color("white")
 paddle_a.shapesize(stretch_wid=5, stretch_len=1)  # mods OG dims by height+5 and width+0
 paddle_a.penup()
@@ -94,3 +93,11 @@ while True:
         ball.goto(0, 0)
         ball.dx *= -1
 
+    # Paddle and Ball Collisions
+    if ((ball.xcor() > 340) and (ball.xcor() < 350)) and ((ball.ycor() < paddle_b.ycor() + 40) and (ball.ycor() > paddle_b.ycor() - 40)):
+        ball.setx(340)
+        ball.dx *= -1
+
+    if ((ball.xcor() < -340) and (ball.xcor() > -350)) and ((ball.ycor() < paddle_a.ycor() + 40) and (ball.ycor() > paddle_a.ycor() - 40)):
+        ball.setx(-340)
+        ball.dx *= -1
