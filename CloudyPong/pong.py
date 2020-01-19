@@ -1,5 +1,7 @@
 # Python Pong Game
 import turtle
+import pygame
+from pygame import mixer
 
 # Windows
 wn = turtle.Screen()
@@ -11,6 +13,10 @@ wn.tracer(0)                        # Helps with refresh rate of window
 # Score
 score_a = 0
 score_b = 0
+
+# Sounds and Music
+mixer.init()
+mixer.music.load('bounce.wav')
 
 # Paddle A
 paddle_a = turtle.Turtle()
@@ -92,11 +98,15 @@ while True:
     # Border Checking
     if ball.ycor() > 290:   # Top Border
         ball.sety(290)
+        mixer.music.play()
         ball.dy *= -1
+
 
     if ball.ycor() < -290:  # Bottom Border
         ball.sety(-290)
+        mixer.music.play()
         ball.dy *= -1
+
 
     if ball.xcor() > 390:   # Right Border
         ball.goto(0, 0)
@@ -115,8 +125,10 @@ while True:
     # Paddle and Ball Collisions
     if ((ball.xcor() > 340) and (ball.xcor() < 350)) and ((ball.ycor() < paddle_b.ycor() + 40) and (ball.ycor() > paddle_b.ycor() - 40)):
         ball.setx(340)
+        mixer.music.play()
         ball.dx *= -1
 
     if ((ball.xcor() < -340) and (ball.xcor() > -350)) and ((ball.ycor() < paddle_a.ycor() + 40) and (ball.ycor() > paddle_a.ycor() - 40)):
         ball.setx(-340)
+        mixer.music.play()
         ball.dx *= -1
