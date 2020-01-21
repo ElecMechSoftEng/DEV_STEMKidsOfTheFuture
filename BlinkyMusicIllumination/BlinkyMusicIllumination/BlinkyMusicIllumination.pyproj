@@ -34,6 +34,7 @@
   <ItemGroup>
     <Content Include="Clip30sYoungGiant.mp3" />
     <Content Include="OG Setup\setup.txt" />
+    <Content Include="Seq_Working.txt" />
     <Content Include="Seq_30sClipYoungGiant.txt" />
     <Content Include="setup.txt" />
     <Content Include="Stuff_That_Works\Clip30sYoungGiant.mp3" />
