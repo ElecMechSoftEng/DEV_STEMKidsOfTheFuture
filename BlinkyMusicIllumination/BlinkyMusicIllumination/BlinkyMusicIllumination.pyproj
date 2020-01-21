@@ -22,16 +22,20 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Blinky.py" />
     <Compile Include="Old Stuff\Blinky-FAILED.py" />
-    <Compile Include="Stuff_That_Works\Blinky-Works.py" />
-    <Compile Include="BlinkyRampFunction.py" />
-    <Compile Include="GPIO-Test.py">
+    <Compile Include="Stuff_That_Works\Blinky.py" />
+    <Compile Include="00_RampFunction.py" />
+    <Compile Include="Tester\GPIO-Test.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="OG Setup\xmas.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Clip30sYoungGiant.mp3" />
     <Content Include="OG Setup\setup.txt" />
+    <Content Include="Seq_30sClipYoungGiant.txt" />
+    <Content Include="setup.txt" />
     <Content Include="Stuff_That_Works\Clip30sYoungGiant.mp3" />
     <Content Include="OG Setup\test.mp3" />
     <Content Include="OG Setup\test.txt" />
@@ -41,6 +45,7 @@
     <Content Include="Stuff_That_Works\Basic-Music.mp3" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Tester\" />
     <Folder Include="Stuff_That_Works\" />
     <Folder Include="Old Stuff\" />
     <Folder Include="OG Setup\" />
