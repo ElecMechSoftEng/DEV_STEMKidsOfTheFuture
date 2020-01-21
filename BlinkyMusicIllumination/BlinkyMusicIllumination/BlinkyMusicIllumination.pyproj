@@ -4,7 +4,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>17c6effe-f5ca-4025-ac85-05a789d2c241</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>BlinkyMusicIllumination.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,35 +22,27 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Blinky-FAILED.py" />
-    <Compile Include="Blinky-Works.py" />
-    <Compile Include="BlinkyMusic2.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BlinkyMusicIllumination.py" />
+    <Compile Include="Old Stuff\Blinky-FAILED.py" />
+    <Compile Include="Stuff_That_Works\Blinky-Works.py" />
     <Compile Include="BlinkyRampFunction.py" />
     <Compile Include="GPIO-Test.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Pong.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="xmas.py" />
+    <Compile Include="OG Setup\xmas.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Clip30sYoungGiant.mp3" />
+    <Content Include="OG Setup\setup.txt" />
+    <Content Include="Stuff_That_Works\Clip30sYoungGiant.mp3" />
     <Content Include="OG Setup\test.mp3" />
     <Content Include="OG Setup\test.txt" />
-    <Content Include="SeqenceFix2020_01_18_0115.txt" />
-    <Content Include="Sequence2020_01_18.txt" />
-    <Content Include="SequenceTestBrightness.txt" />
-    <Content Include="Sequence_30sClipYoungGiant.txt" />
-    <Content Include="Sequence_2019-12-26.txt" />
-    <Content Include="Sequence.txt" />
-    <Content Include="setup.txt" />
-    <Content Include="Music.mp3" />
+    <Content Include="Stuff_That_Works\Basic-Seq.txt" />
+    <Content Include="Stuff_That_Works\Seq_30sClipYoungGiant.txt" />
+    <Content Include="Stuff_That_Works\setup.txt" />
+    <Content Include="Stuff_That_Works\Basic-Music.mp3" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Stuff_That_Works\" />
+    <Folder Include="Old Stuff\" />
     <Folder Include="OG Setup\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
