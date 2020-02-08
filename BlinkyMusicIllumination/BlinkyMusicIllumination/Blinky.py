@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
 # Command Line usage:
-#   xmas.py <input sequence> <audio file>
+#   Blinky.py <input sequence> <audio file>
 
 import RPi.GPIO as GPIO, time
 import sys
